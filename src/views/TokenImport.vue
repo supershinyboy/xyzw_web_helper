@@ -5,7 +5,7 @@
       <div class="page-header">
         <div class="header-content">
           <img
-            src="/icons/logo.png"
+            src="/icons/xiaoyugan.png"
             alt="XYZW"
             class="brand-logo"
           >
@@ -37,7 +37,7 @@
               </n-alert>
             </div>
           </div>
-          
+
           <n-form
             ref="importFormRef"
             :model="importForm"
@@ -55,7 +55,7 @@
                 clearable
               />
             </n-form-item>
-            
+
             <n-form-item
               label="Base64 Token"
               path="base64Token"
@@ -68,7 +68,7 @@
                 clearable
               />
             </n-form-item>
-            
+
             <!-- 可选信息 -->
             <n-collapse>
               <n-collapse-item
@@ -82,7 +82,7 @@
                       placeholder="服务器名称"
                     />
                   </n-form-item>
-                  
+
                   <n-form-item label="等级">
                     <n-input-number
                       v-model:value="importForm.level"
@@ -91,7 +91,7 @@
                       placeholder="角色等级"
                     />
                   </n-form-item>
-                  
+
                   <n-form-item label="职业">
                     <n-select
                       v-model:value="importForm.profession"
@@ -99,7 +99,7 @@
                       placeholder="选择职业"
                     />
                   </n-form-item>
-                  
+
                   <n-form-item label="WebSocket URL (可选)">
                     <n-input
                       v-model:value="importForm.wsUrl"
@@ -114,7 +114,7 @@
                 </div>
               </n-collapse-item>
             </n-collapse>
-            
+
             <div class="form-actions">
               <n-button
                 type="primary"
@@ -128,7 +128,7 @@
                 </template>
                 导入Token
               </n-button>
-              
+
               <n-button
                 v-if="tokenStore.hasTokens"
                 size="large"
@@ -160,7 +160,7 @@
               </template>
               添加Token
             </n-button>
-            
+
             <n-dropdown
               :options="bulkOptions"
               @select="handleBulkAction"
@@ -174,13 +174,13 @@
             </n-dropdown>
           </div>
         </div>
-        
+
         <div class="tokens-grid">
           <div
             v-for="token in tokenStore.gameTokens"
             :key="token.id"
             class="token-card"
-            :class="{ 
+            :class="{
               active: token.id === tokenStore.selectedTokenId,
               connected: getConnectionStatus(token.id) === 'connected'
             }"
@@ -206,7 +206,7 @@
                   >{{ token.profession }}</span>
                 </div>
               </div>
-              
+
               <div class="card-actions">
                 <n-dropdown
                   :options="getTokenActions(token)"
@@ -220,24 +220,24 @@
                 </n-dropdown>
               </div>
             </div>
-            
+
             <div class="card-body">
               <div class="token-display">
                 <span class="token-label">Token:</span>
                 <code class="token-value">{{ maskToken(token.token) }}</code>
               </div>
-              
+
               <div class="connection-status">
                 <div class="status-indicator">
-                  <span 
-                    class="status-dot" 
+                  <span
+                    class="status-dot"
                     :class="getConnectionStatus(token.id)"
                   />
                   <span class="status-text">
                     {{ getConnectionStatusText(token.id) }}
                   </span>
                 </div>
-                
+
                 <n-button
                   size="small"
                   :type="getConnectionStatus(token.id) === 'connected' ? 'warning' : 'primary'"
@@ -246,7 +246,7 @@
                   {{ getConnectionStatus(token.id) === 'connected' ? '断开' : '连接' }}
                 </n-button>
               </div>
-              
+
               <div class="token-timestamps">
                 <div class="timestamp-item">
                   <span class="timestamp-label">创建：</span>
@@ -258,7 +258,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div
               v-if="token.id === tokenStore.selectedTokenId"
               class="card-footer"
@@ -342,7 +342,7 @@
           <n-input v-model:value="editForm.wsUrl" />
         </n-form-item>
       </n-form>
-      
+
       <template #footer>
         <div class="modal-actions">
           <n-button @click="showEditModal = false">
@@ -442,11 +442,11 @@ const bulkOptions = [
 // 方法
 const handleImport = async () => {
   if (!importFormRef.value) return
-  
+
   try {
     await importFormRef.value.validate()
     isImporting.value = true
-    
+
     const result = tokenStore.importBase64Token(
       importForm.name,
       importForm.base64Token,
@@ -457,7 +457,7 @@ const handleImport = async () => {
         wsUrl: importForm.wsUrl
       }
     )
-    
+
     if (result.success) {
       message.success(result.message)
       resetImportForm()
@@ -503,7 +503,7 @@ const getConnectionStatusText = (tokenId) => {
 
 const toggleConnection = (token) => {
   const status = getConnectionStatus(token.id)
-  
+
   if (status === 'connected') {
     tokenStore.closeWebSocketConnection(token.id)
     message.info('WebSocket连接已断开')
@@ -552,10 +552,10 @@ const editToken = (token) => {
 
 const saveEdit = async () => {
   if (!editFormRef.value || !editingToken.value) return
-  
+
   try {
     await editFormRef.value.validate()
-    
+
     tokenStore.updateToken(editingToken.value.id, {
       name: editForm.name,
       server: editForm.server,
@@ -563,7 +563,7 @@ const saveEdit = async () => {
       profession: editForm.profession,
       wsUrl: editForm.wsUrl
     })
-    
+
     message.success('Token信息已更新')
     showEditModal.value = false
     editingToken.value = null
@@ -627,12 +627,12 @@ const exportTokens = () => {
     const data = tokenStore.exportTokens()
     const dataStr = JSON.stringify(data, null, 2)
     const dataBlob = new Blob([dataStr], { type: 'application/json' })
-    
+
     const link = document.createElement('a')
     link.href = URL.createObjectURL(dataBlob)
     link.download = `tokens_backup_${new Date().toISOString().split('T')[0]}.json`
     link.click()
-    
+
     message.success('Token数据已导出')
   } catch (error) {
     message.error('导出失败')
@@ -709,7 +709,7 @@ const goToDashboard = () => {
 // 生命周期
 onMounted(() => {
   tokenStore.initTokenStore()
-  
+
   // 如果没有token，显示导入表单
   if (!tokenStore.hasTokens) {
     showImportForm.value = true
@@ -782,7 +782,7 @@ onMounted(() => {
 .card-header {
   text-align: center;
   margin-bottom: var(--spacing-xl);
-  
+
   h2 {
     display: flex;
     align-items: center;
@@ -792,16 +792,16 @@ onMounted(() => {
     font-size: var(--font-size-xl);
     margin-bottom: var(--spacing-sm);
   }
-  
+
   p {
     color: var(--text-secondary);
     margin: 0 0 var(--spacing-md) 0;
   }
-  
+
   .help-info {
     margin-top: var(--spacing-md);
     text-align: left;
-    
+
     code {
       background: rgba(24, 160, 88, 0.1);
       color: var(--success-color);
@@ -838,7 +838,7 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--spacing-xl);
-  
+
   h2 {
     color: var(--text-primary);
     font-size: var(--font-size-xl);
@@ -863,17 +863,17 @@ onMounted(() => {
   padding: var(--spacing-lg);
   cursor: pointer;
   transition: all var(--transition-normal);
-  
+
   &:hover {
     box-shadow: var(--shadow-medium);
     transform: translateY(-2px);
   }
-  
+
   &.active {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
   }
-  
+
   &.connected {
     border-left: 4px solid var(--success-color);
   }
@@ -956,15 +956,15 @@ onMounted(() => {
   height: 8px;
   border-radius: 50%;
   background: var(--text-tertiary);
-  
+
   &.connected {
     background: var(--success-color);
   }
-  
+
   &.connecting {
     background: var(--warning-color);
   }
-  
+
   &.error {
     background: var(--error-color);
   }
@@ -1022,21 +1022,21 @@ onMounted(() => {
   .container {
     padding: 0 var(--spacing-md);
   }
-  
+
   .tokens-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .optional-fields {
     grid-template-columns: 1fr;
   }
-  
+
   .section-header {
     flex-direction: column;
     gap: var(--spacing-md);
     align-items: stretch;
   }
-  
+
   .token-timestamps {
     flex-direction: column;
   }

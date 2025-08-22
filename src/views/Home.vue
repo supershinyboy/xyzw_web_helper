@@ -6,35 +6,35 @@
         <div class="nav-content">
           <div class="nav-brand">
             <img
-              src="/icons/logo.png"
+              src="/icons/xiaoyugan.png"
               alt="XYZW"
               class="brand-logo"
             >
             <span class="brand-text">XYZW 游戏管理系统</span>
           </div>
-          
+
           <div class="nav-actions">
             <template v-if="!authStore.isAuthenticated">
-              <n-button 
-                text 
-                type="primary" 
-                size="large" 
+              <n-button
+                text
+                type="primary"
+                size="large"
                 @click="router.push('/login')"
               >
                 登录
               </n-button>
-              <n-button 
-                type="primary" 
-                size="large" 
+              <n-button
+                type="primary"
+                size="large"
                 @click="router.push('/register')"
               >
                 注册
               </n-button>
             </template>
             <template v-else>
-              <n-button 
-                type="primary" 
-                size="large" 
+              <n-button
+                type="primary"
+                size="large"
                 @click="router.push('/dashboard')"
               >
                 进入控制台
@@ -59,18 +59,18 @@
                 让游戏变得更简单，让管理变得更高效
               </p>
               <div class="hero-actions">
-                <n-button 
-                  type="primary" 
-                  size="large" 
+                <n-button
+                  type="primary"
+                  size="large"
                   class="hero-button"
                   @click="router.push(authStore.isAuthenticated ? '/dashboard' : '/register')"
                 >
                   {{ authStore.isAuthenticated ? '进入控制台' : '立即开始' }}
                 </n-button>
-                <n-button 
-                  text 
-                  type="primary" 
-                  size="large" 
+                <n-button
+                  text
+                  type="primary"
+                  size="large"
                   class="hero-button"
                   @click="scrollToFeatures"
                 >
@@ -78,7 +78,7 @@
                 </n-button>
               </div>
             </div>
-            
+
             <div class="hero-visual">
               <div class="feature-cards">
                 <div
@@ -114,11 +114,11 @@
               为您提供全方位的游戏管理解决方案
             </p>
           </div>
-          
+
           <div class="features-grid">
-            <div 
-              v-for="feature in features" 
-              :key="feature.id" 
+            <div
+              v-for="feature in features"
+              :key="feature.id"
               class="feature-item"
             >
               <div class="feature-icon">
@@ -162,7 +162,7 @@
         <div class="footer-content">
           <div class="footer-brand">
             <img
-              src="/icons/logo.png"
+              src="/icons/xiaoyugan.png"
               alt="XYZW"
               class="footer-logo"
             >
@@ -199,12 +199,12 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
-import { 
-  PersonCircle, 
-  Cube, 
-  Ribbon, 
-  Home, 
-  Settings 
+import {
+  PersonCircle,
+  Cube,
+  Ribbon,
+  Home,
+  Settings
 } from '@vicons/ionicons5'
 
 const router = useRouter()
@@ -272,8 +272,8 @@ const stats = ref([
 // 滚动到功能区域
 const scrollToFeatures = () => {
   if (featuresSection.value) {
-    featuresSection.value.scrollIntoView({ 
-      behavior: 'smooth' 
+    featuresSection.value.scrollIntoView({
+      behavior: 'smooth'
     })
   }
 }
@@ -399,7 +399,7 @@ onMounted(() => {
   border-radius: var(--border-radius-large);
   padding: var(--spacing-lg);
   transition: all var(--transition-normal);
-  
+
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -411,7 +411,7 @@ onMounted(() => {
   height: 48px;
   color: #fff;
   margin-bottom: var(--spacing-md);
-  
+
   :deep(svg) {
     width: 100%;
     height: 100%;
@@ -468,7 +468,7 @@ onMounted(() => {
   padding: var(--spacing-xl);
   border-radius: var(--border-radius-large);
   transition: all var(--transition-normal);
-  
+
   &:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-heavy);
@@ -480,7 +480,7 @@ onMounted(() => {
   height: 64px;
   margin: 0 auto var(--spacing-lg);
   color: var(--primary-color);
-  
+
   :deep(svg) {
     width: 100%;
     height: 100%;
@@ -564,7 +564,7 @@ onMounted(() => {
 .footer-link {
   color: rgba(255, 255, 255, 0.8);
   transition: color var(--transition-fast);
-  
+
   &:hover {
     color: white;
   }
@@ -583,20 +583,20 @@ onMounted(() => {
     grid-template-columns: 1fr;
     text-align: center;
   }
-  
+
   .hero-title {
     font-size: 2.5rem;
   }
-  
+
   .hero-actions {
     justify-content: center;
   }
-  
+
   .footer-content {
     flex-direction: column;
     gap: var(--spacing-lg);
   }
-  
+
   .nav-actions {
     flex-direction: column;
     gap: var(--spacing-xs);

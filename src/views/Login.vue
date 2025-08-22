@@ -6,7 +6,7 @@
         <div class="card-header">
           <div class="brand">
             <img
-              src="/icons/logo.png"
+              src="/icons/xiaoyugan.png"
               alt="XYZW"
               class="brand-logo"
             >
@@ -87,8 +87,8 @@
           </n-divider>
 
           <div class="social-login">
-            <n-button 
-              size="large" 
+            <n-button
+              size="large"
               class="social-button"
               @click="handleSocialLogin('qq')"
             >
@@ -99,9 +99,9 @@
               </template>
               QQ登录
             </n-button>
-            
-            <n-button 
-              size="large" 
+
+            <n-button
+              size="large"
               class="social-button"
               @click="handleSocialLogin('wechat')"
             >
@@ -133,7 +133,7 @@
           <h2>为什么选择 XYZW？</h2>
           <p>专业的游戏管理平台，让游戏变得更轻松</p>
         </div>
-        
+
         <div class="features-list">
           <div
             v-for="feature in features"
@@ -237,7 +237,7 @@ const handleLogin = async () => {
 
   try {
     await loginFormRef.value.validate()
-    
+
     const result = await authStore.login({
       username: loginForm.username,
       password: loginForm.password,
@@ -246,7 +246,7 @@ const handleLogin = async () => {
 
     if (result.success) {
       message.success('登录成功')
-      
+
       // 跳转到dashboard或之前访问的页面
       const redirect = router.currentRoute.value.query.redirect || '/dashboard'
       router.push(redirect)
@@ -370,7 +370,7 @@ onMounted(() => {
 .social-button {
   height: 44px;
   border: 1px solid var(--border-light);
-  
+
   &:hover {
     border-color: var(--primary-color);
   }
@@ -379,7 +379,7 @@ onMounted(() => {
 .register-prompt {
   text-align: center;
   color: var(--text-secondary);
-  
+
   span {
     margin-right: var(--spacing-sm);
   }
@@ -394,13 +394,13 @@ onMounted(() => {
 .showcase-header {
   text-align: center;
   margin-bottom: var(--spacing-xl);
-  
+
   h2 {
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-bold);
     margin-bottom: var(--spacing-md);
   }
-  
+
   p {
     font-size: var(--font-size-lg);
     opacity: 0.9;
@@ -423,7 +423,7 @@ onMounted(() => {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all var(--transition-normal);
-  
+
   &:hover {
     transform: translateX(8px);
     background: rgba(255, 255, 255, 0.15);
@@ -435,7 +435,7 @@ onMounted(() => {
   height: 48px;
   color: white;
   flex-shrink: 0;
-  
+
   :deep(svg) {
     width: 100%;
     height: 100%;
@@ -444,13 +444,13 @@ onMounted(() => {
 
 .feature-content {
   flex: 1;
-  
+
   h3 {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
     margin-bottom: var(--spacing-sm);
   }
-  
+
   p {
     opacity: 0.8;
     line-height: var(--line-height-relaxed);
@@ -515,11 +515,11 @@ onMounted(() => {
     grid-template-columns: 1fr;
     max-width: 500px;
   }
-  
+
   .features-showcase {
     order: -1;
   }
-  
+
   .showcase-header h2 {
     font-size: var(--font-size-2xl);
   }
@@ -529,24 +529,24 @@ onMounted(() => {
   .login-container {
     padding: var(--spacing-md);
   }
-  
+
   .login-card {
     padding: var(--spacing-xl);
   }
-  
+
   .brand-title {
     font-size: var(--font-size-xl);
   }
-  
+
   .social-login {
     grid-template-columns: 1fr;
   }
-  
+
   .feature-item {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .decoration-circle {
     display: none;
   }

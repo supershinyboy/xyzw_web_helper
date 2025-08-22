@@ -5,7 +5,7 @@
         <div class="card-header">
           <div class="brand">
             <img
-              src="/icons/logo.png"
+              src="/icons/xiaoyugan.png"
               alt="XYZW"
               class="brand-logo"
             >
@@ -209,12 +209,12 @@ const handleRegister = async () => {
 
   try {
     await registerFormRef.value.validate()
-    
+
     if (!registerForm.agreeTerms) {
       message.warning('请先同意服务条款和隐私政策')
       return
     }
-    
+
     const result = await authStore.register({
       username: registerForm.username,
       email: registerForm.email,
@@ -299,7 +299,7 @@ const handleRegister = async () => {
 
 .form-options {
   margin-bottom: var(--spacing-xl);
-  
+
   :deep(.n-checkbox) {
     line-height: var(--line-height-relaxed);
   }
@@ -315,7 +315,7 @@ const handleRegister = async () => {
 .login-prompt {
   text-align: center;
   color: var(--text-secondary);
-  
+
   span {
     margin-right: var(--spacing-sm);
   }
@@ -325,7 +325,7 @@ const handleRegister = async () => {
   .register-card {
     padding: var(--spacing-xl);
   }
-  
+
   .brand-title {
     font-size: var(--font-size-xl);
   }

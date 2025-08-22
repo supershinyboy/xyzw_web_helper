@@ -5,13 +5,13 @@
       <div class="nav-container">
         <div class="nav-brand">
           <img
-            src="/icons/logo.png"
+            src="/icons/xiaoyugan.png"
             alt="XYZW"
             class="brand-logo"
           >
           <span class="brand-text">XYZW 控制台</span>
         </div>
-        
+
         <div class="nav-menu">
           <router-link
             to="/dashboard"
@@ -62,15 +62,15 @@
             <span>个人设置</span>
           </router-link>
         </div>
-        
+
         <div class="nav-user">
           <n-dropdown
             :options="userMenuOptions"
             @select="handleUserAction"
           >
             <div class="user-info">
-              <n-avatar 
-                size="medium" 
+              <n-avatar
+                size="medium"
                 fallback-src="/icons/xiaoyugan.png"
               />
               <span class="username">{{ tokenStore.selectedToken?.name || '未选择Token' }}</span>
@@ -92,14 +92,14 @@
               <p>今天是 {{ currentDate }}，继续您的游戏管理之旅吧</p>
             </div>
             <div class="welcome-actions">
-              <n-button 
-                type="primary" 
+              <n-button
+                type="primary"
                 size="large"
                 @click="router.push('/game-features')"
               >
                 进入游戏功能
               </n-button>
-              <n-button 
+              <n-button
                 size="large"
                 @click="router.push('/tokens')"
               >
@@ -147,7 +147,7 @@
             快速操作
           </h2>
           <div class="actions-grid">
-            <div 
+            <div
               v-for="action in quickActions"
               :key="action.id"
               class="action-card"
@@ -178,12 +178,12 @@
               刷新
             </n-button>
           </div>
-          
+
           <div
             v-if="recentActivities.length"
             class="activity-list"
           >
-            <div 
+            <div
               v-for="activity in recentActivities"
               :key="activity.id"
               class="activity-item"
@@ -204,7 +204,7 @@
               </div>
             </div>
           </div>
-          
+
           <div
             v-else
             class="empty-activity"
@@ -222,10 +222,10 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useMessage } from 'naive-ui'
 import { useTokenStore } from '@/stores/tokenStore'
-import { 
-  Home, 
-  PersonCircle, 
-  Cube, 
+import {
+  Home,
+  PersonCircle,
+  Cube,
   Settings,
   ChevronDown,
   Ribbon,
@@ -428,7 +428,7 @@ const formatTime = (timestamp) => {
   const minutes = Math.floor(diff / (1000 * 60))
   const hours = Math.floor(diff / (1000 * 60 * 60))
   const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-  
+
   if (days > 0) {
     return `${days}天前`
   } else if (hours > 0) {
@@ -512,12 +512,12 @@ onMounted(async () => {
   color: var(--text-secondary);
   text-decoration: none;
   transition: all var(--transition-fast);
-  
+
   &:hover {
     background: var(--bg-tertiary);
     color: var(--text-primary);
   }
-  
+
   &.active {
     background: var(--primary-color-light);
     color: var(--primary-color);
@@ -536,7 +536,7 @@ onMounted(async () => {
   border-radius: var(--border-radius-medium);
   cursor: pointer;
   transition: background var(--transition-fast);
-  
+
   &:hover {
     background: var(--bg-tertiary);
   }
@@ -579,7 +579,7 @@ onMounted(async () => {
     font-weight: var(--font-weight-bold);
     margin-bottom: var(--spacing-sm);
   }
-  
+
   p {
     font-size: var(--font-size-lg);
     opacity: 0.9;
@@ -609,7 +609,7 @@ onMounted(async () => {
   padding: var(--spacing-lg);
   box-shadow: var(--shadow-light);
   transition: all var(--transition-normal);
-  
+
   &:hover {
     box-shadow: var(--shadow-medium);
     transform: translateY(-2px);
@@ -620,7 +620,7 @@ onMounted(async () => {
   width: 48px;
   height: 48px;
   margin-bottom: var(--spacing-md);
-  
+
   :deep(svg) {
     width: 100%;
     height: 100%;
@@ -643,11 +643,11 @@ onMounted(async () => {
 .stat-change {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  
+
   &.positive {
     color: var(--success-color);
   }
-  
+
   &.negative {
     color: var(--error-color);
   }
@@ -678,7 +678,7 @@ onMounted(async () => {
   box-shadow: var(--shadow-light);
   cursor: pointer;
   transition: all var(--transition-normal);
-  
+
   &:hover {
     box-shadow: var(--shadow-medium);
     transform: translateY(-2px);
@@ -690,7 +690,7 @@ onMounted(async () => {
   height: 40px;
   color: var(--primary-color);
   margin-bottom: var(--spacing-md);
-  
+
   :deep(svg) {
     width: 100%;
     height: 100%;
@@ -704,7 +704,7 @@ onMounted(async () => {
     color: var(--text-primary);
     margin-bottom: var(--spacing-xs);
   }
-  
+
   p {
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
@@ -739,7 +739,7 @@ onMounted(async () => {
   padding: var(--spacing-md);
   border-radius: var(--border-radius-medium);
   transition: background var(--transition-fast);
-  
+
   &:hover {
     background: var(--bg-tertiary);
   }
@@ -753,22 +753,22 @@ onMounted(async () => {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  
+
   &.success {
     background: rgba(24, 160, 88, 0.1);
     color: var(--success-color);
   }
-  
+
   &.warning {
     background: rgba(240, 160, 32, 0.1);
     color: var(--warning-color);
   }
-  
+
   &.info {
     background: rgba(32, 128, 240, 0.1);
     color: var(--info-color);
   }
-  
+
   :deep(svg) {
     width: 16px;
     height: 16px;
@@ -801,7 +801,7 @@ onMounted(async () => {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .stats-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
@@ -811,28 +811,28 @@ onMounted(async () => {
   .dashboard-main {
     padding: var(--spacing-md);
   }
-  
+
   .nav-menu {
     display: none;
   }
-  
+
   .welcome-section {
     padding: var(--spacing-xl);
   }
-  
+
   .welcome-text h1 {
     font-size: var(--font-size-2xl);
   }
-  
+
   .welcome-actions {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .actions-grid {
     grid-template-columns: 1fr;
   }
