@@ -1,0 +1,9 @@
+version: '3'
+services:
+  xyzw-web:
+    image: ghcr.io/supershinyboy/xyzw_web_helper:latest
+    build: .
+    ports:
+      - "3000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
