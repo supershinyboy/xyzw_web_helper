@@ -1,8 +1,14 @@
 version: '3'
+
 services:
-  web:
-    image: ghcr.io/supershinyboy/xyzw_web_helper:latest
-    container_name: xyzw_web
+  xyzw-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      platforms:
+        - "linux/amd64"
+        - "linux/arm64"
+    container_name: xyzw-web
     ports:
       - "3000:80"
     restart: unless-stopped
