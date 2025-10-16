@@ -3,7 +3,7 @@ name: Docker Image CI
 on:
   push:
     branches: [ "docker-main" ]
-    tags: [ 'v*.*.*' ]
+    tags: ghcr.io/${{ github.repository_owner }}/xyzw_web_helper:latest
   pull_request:
     branches: [ "docker-main" ]
 
