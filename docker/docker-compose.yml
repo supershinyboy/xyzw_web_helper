@@ -1,0 +1,6 @@
+services:
+  xyzw_web_helper:
+    image: ghcr.io/supershinyboy/xyzw_web_helper:latest
+    ports:
+      - "3000:80"
+    restart: unless-stopped
