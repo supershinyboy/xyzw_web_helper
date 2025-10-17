@@ -8,7 +8,7 @@
     <!-- 下方选卡分区切换（Tabs）：日常｜俱乐部｜活动 -->
     <n-tabs
       class="section-tabs"
-      v-model:value="activeSection"
+      v-model="activeSection"
       type="line"
       animated
       size="small"
@@ -229,6 +229,7 @@
     </div>
     
     <!-- 俱乐部赛车（合并自俱乐部赛车 + 疯狂赛车） -->
+    <CarTaskCard v-show="activeSection === 'club'" />
     
     <!-- 俱乐部签到（已迁移到俱乐部信息-概览，故隐藏原卡片） -->
     <div class="status-card legion-signin" v-if="ENABLE_LEGION_SIGNIN_CARD && activeSection === 'club'">
@@ -350,6 +351,7 @@ import DailyTaskStatus from './DailyTaskStatus.vue'
 import TowerStatus from './TowerStatus.vue'
 import ClubInfo from './ClubInfo.vue'
 import ClubCarKing from './ClubCarKing.vue'
+import CarTaskCard from './CarTaskCard.vue'
 
 const tokenStore = useTokenStore()
 const message = useMessage()

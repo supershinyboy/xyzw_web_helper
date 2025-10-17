@@ -21,7 +21,7 @@
           <p>暂无车辆数据</p>
         </div>
         <div  class="car-grid" >
-          <div v-for="(car, index) in sortedCarList" :key="car.id" class="car-item" style="width: 0;">
+          <div v-for="car in sortedCarList" :key="car.id" class="car-item" style="width: 0;">
             <div class="car-header">
               <h4><span :class="`status-${car.status}`">{{ getCarStatusText(car) }}</span></h4>
               <span class="car-rarity" :class="`rarity-${car.color}`">
