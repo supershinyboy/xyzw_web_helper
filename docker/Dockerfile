@@ -22,16 +22,10 @@ FROM --platform=$TARGETPLATFORM nginx:alpine as production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 # 复制 nginx 配置
-COPY ./docker/nginx.conf /etc/nginx/conf.d/default.conf
-
-# 复制并设置入口脚本权限
-COPY ./docker/docker-entrypoint.sh /root/docker-entrypoint.sh
-RUN chmod +x /root/docker-entrypoint.sh
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # 暴露 80 端口
 EXPOSE 80
 
 # 启动 Nginx
-# 使用绝对路径启动
-ENTRYPOINT ["/root/docker-entrypoint.sh"]
-# CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
