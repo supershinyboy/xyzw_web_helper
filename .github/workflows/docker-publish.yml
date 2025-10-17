@@ -4,13 +4,13 @@ on:
   push:
     paths-ignore:
       - "*.md"
-    branches: 
+    branches:
       - "main"
       - "docker-main"
     tags:
       - "v*"
   pull_request:
-    branches: 
+    branches:
       - "docker-main"
   schedule:
     - cron: "00 20 * * *"
@@ -46,19 +46,18 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ github.repository }}
-            ghcr.io/${{ github.repository }}
+          images: ghcr.io/${{ github.repository }}
           flavor: |
             latest=false
           tags: |
             type=schedule,pattern=nightly
             type=edge
             type=ref,event=pr
-            type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', 'main') }}
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', 'docker-main') }}
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'docker-main') }}
+            type=semver,pattern={{version}},prefix=v
+            type=semver,pattern={{major}}.{{minor}},prefix=v
+            type=semver,pattern={{major}},prefix=v
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
@@ -74,8 +73,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=supershinyboy/xyzw_web_helper:cache
-          cache-to: type=registry,ref=supershinyboy/xyzw_web_helper:cache,mode=max
+          cache-from: type=registry,ref=ghcr.io/supershinyboy/xyzw_web_helper:cache
+          cache-to: type=registry,ref=ghcr.io/supershinyboy/xyzw_web_helper:cache,mode=max
       - name: Image digest
         run: |
-          echo ${{ steps.docker_build.outputs.digest }}    
+          echo ${{ steps.meta.outputs.digest }}
