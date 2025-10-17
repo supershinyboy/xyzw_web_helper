@@ -24,9 +24,14 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 # 复制 nginx 配置
 COPY ./docker/nginx.conf /etc/nginx/conf.d/default.conf
 
+# 复制并设置入口脚本权限
+COPY ./docker/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # 暴露 80 端口
 EXPOSE 80
 
 # 启动 Nginx
-
-ENTRYPOINT ["./docker/docker-entrypoint.sh"]
+# 使用绝对路径启动
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+# CMD ["nginx", "-g", "daemon off;"]
