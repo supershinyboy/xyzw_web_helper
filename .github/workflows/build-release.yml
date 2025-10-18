@@ -2,15 +2,12 @@ name: Auto Build and Release
 
 on:
   push:
-      paths-ignore:
+    paths-ignore:
       - "*.md"
     branches:
       - "release"
     tags:
       - "v*"
-    pull_request:
-      branches:
-        - "release"
   workflow_dispatch:  # 允许手动触发
 
 jobs:
