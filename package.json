@@ -6,6 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:zip": "npm run build && cd dist && zip -r ../dist.zip ./*",
+    "build:zip-with-version": "npm run build && cd dist && zip -r ../dist-$(node -p \"require('./package.json').version\").zip ./*",
+    "build:zip-with-date": "npm run build && cd dist && zip -r ../dist-$(date +%Y%m%d-%H%M%S).zip ./*",
+    "release": "npm run build:zip-with-version && gh release create v$(node -p \"require('./package.json').version\") dist-*.zip --generate-notes",
     "preview": "vite preview",
     "lint": "eslint src --ext .vue,.js,.ts --fix",
     "format": "prettier --write \"src/**/*.{js,vue,ts,css,scss}\""
